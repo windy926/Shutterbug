@@ -81,7 +81,7 @@
     // is the Detail is an ImageViewController?
     if ([detail isKindOfClass:[ImageViewController class]]) {
         // yes ... we know how to update that!
-        [self prepareImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        [self preparePlaceImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
     }
 }
 
@@ -91,7 +91,38 @@
 // used either when segueing to an ImageViewController
 //   or when our UISplitViewController's Detail view controller is an ImageViewController
 
-- (void)prepareImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
+
+- (void)preparePlaceImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
+{
+    ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
+    ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *recentPhotos = [[userDefaults objectForKey:RECENT_PHOTOS] mutableCopy];
+    if (!recentPhotos) {
+        recentPhotos = [[NSMutableArray alloc] init];
+        [userDefaults setObject:(NSArray *)recentPhotos forKey:RECENT_PHOTOS];
+        [userDefaults synchronize];
+    }
+    
+ //   NSString *urlString = [ivc.imageURL absoluteString];
+    
+    BOOL exist = NO;
+    for (NSDictionary *photo in recentPhotos) {
+        NSURL *photoUrl = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
+        if ([photoUrl isEqual:ivc.imageURL]) {
+            exist = YES;
+            break;
+        }
+    }
+    if (!exist) {
+        [recentPhotos insertObject:photo  atIndex:0];
+        [userDefaults setObject:(NSArray *)recentPhotos forKey:RECENT_PHOTOS];
+        [userDefaults synchronize];
+    }
+}
+
+- (void)prepareRecentImageViewController:(ImageViewController *)ivc toDisplayPhoto:(NSDictionary *)photo
 {
     ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
     ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
@@ -109,12 +140,19 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             // found it ... are we doing the Display Photo segue?
-            if ([segue.identifier isEqualToString:@"Display Photo"]) {
+            if ([segue.identifier isEqualToString:@"Display One Place Photo"]) {
                 // yes ... is the destination an ImageViewController?
                 if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
                     // yes ... then we know how to prepare for that segue!
-                    [self prepareImageViewController:segue.destinationViewController
+                    [self preparePlaceImageViewController:segue.destinationViewController
                                       toDisplayPhoto:self.photos[indexPath.row]];
+                }
+            } else if ([segue.identifier isEqualToString:@"Display Recent Photo"]) {
+                // yes ... is the destination an ImageViewController?
+                if ([segue.destinationViewController isKindOfClass:[ImageViewController class]]) {
+                    // yes ... then we know how to prepare for that segue!
+                    [self prepareRecentImageViewController:segue.destinationViewController
+                                           toDisplayPhoto:self.photos[indexPath.row]];
                 }
             }
         }

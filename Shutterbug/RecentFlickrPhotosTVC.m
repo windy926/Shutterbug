@@ -1,19 +1,18 @@
 //
-//  PlaceFlickrPhotosTVC.m
+//  RecentFlickrPhotosTVC.m
 //  Shutterbug
 //
 //  Created by qsu on 13-11-30.
 //  Copyright (c) 2013年 Qi Su. All rights reserved.
 //
 
-#import "PlaceFlickrPhotosTVC.h"
-#import "FlickrFetcher.h"
+#import "RecentFlickrPhotosTVC.h"
 
-@interface PlaceFlickrPhotosTVC ()
+@interface RecentFlickrPhotosTVC ()
 
 @end
 
-@implementation PlaceFlickrPhotosTVC
+@implementation RecentFlickrPhotosTVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,26 +36,21 @@
 - (IBAction)fetchPhotos
 {
     [self.refreshControl beginRefreshing]; // start the spinner
-    NSURL *url = [FlickrFetcher URLforPhotosInPlace:self.placeId maxResults:50];
     // create a (non-main) queue to do fetch on
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetcher", NULL);
     // put a block to do the fetch onto that queue
     dispatch_async(fetchQ, ^{
-        // fetch the JSON data from Flickr
-        NSData *jsonResults = [NSData dataWithContentsOfURL:url];
-        // convert it to a Property List (NSArray and NSDictionary)
-        NSDictionary *propertyListResults = [NSJSONSerialization JSONObjectWithData:jsonResults
-                                                                            options:0
-                                                                              error:NULL];
-        // get the NSArray of photo NSDictionarys out of the results
-        NSArray *photos = [propertyListResults valueForKeyPath:FLICKR_RESULTS_PHOTOS];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSArray *photos = [defaults valueForKey:RECENT_PHOTOS];        
         // update the Model (and thus our UI), but do so back on the main queue
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.refreshControl endRefreshing]; // stop the spinner
-            self.photos = photos;
+            if ([photos count] > 20) {
+                self.photos = [photos objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 20)]];
+            } else {
+                self.photos = photos;
+            }
         });
     });
 }
-
-
 @end

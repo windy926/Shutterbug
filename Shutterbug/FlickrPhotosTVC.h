@@ -10,6 +10,8 @@
 
 @interface FlickrPhotosTVC : UITableViewController
 
+#define RECENT_PHOTOS @"recent_photos"
+
 // Model of this MVC (it can be publicly set)
 @property (nonatomic, strong) NSArray *photos; // of Flickr photo NSDictionary
 
