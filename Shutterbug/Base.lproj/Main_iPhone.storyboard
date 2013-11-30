@@ -175,8 +175,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="l6d-Ae-BAD" firstAttribute="leading" secondItem="RUa-oR-p0n" secondAttribute="leading" id="71D-1Z-Gua"/>
-                            <constraint firstAttribute="centerX" secondItem="JEH-Jq-OLZ" secondAttribute="centerX" id="8Aa-sf-gEE"/>
-                            <constraint firstAttribute="centerY" secondItem="JEH-Jq-OLZ" secondAttribute="centerY" id="NxD-ek-STP"/>
+                            <constraint firstAttribute="centerX" secondItem="JEH-Jq-OLZ" secondAttribute="centerX" id="Smz-SK-z4N"/>
+                            <constraint firstAttribute="centerY" secondItem="JEH-Jq-OLZ" secondAttribute="centerY" id="Zid-dT-vAa"/>
                             <constraint firstAttribute="bottom" secondItem="l6d-Ae-BAD" secondAttribute="bottom" id="cM5-IV-ODa"/>
                             <constraint firstAttribute="trailing" secondItem="l6d-Ae-BAD" secondAttribute="trailing" id="gTu-hW-JQ2"/>
                             <constraint firstItem="l6d-Ae-BAD" firstAttribute="top" secondItem="RUa-oR-p0n" secondAttribute="top" id="ord-7G-XyM"/>

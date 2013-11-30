@@ -52,7 +52,18 @@
 
     // had to add these two lines in Shutterbug to fix a bug in "reusing" ImageViewController's MVC
     self.scrollView.zoomScale = 1.0;
-    self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    CGSize boundSize = self.scrollView.bounds.size;
+    CGSize showSize = image.size;
+    if (showSize.width && showSize.width < boundSize.width) {
+        showSize.height = showSize.height * (boundSize.width / showSize.width);
+        showSize.width = boundSize.width;
+    }
+    if (showSize.height && showSize.height < boundSize.height) {
+        showSize.width = showSize.width * (boundSize.height / showSize.height);
+        showSize.height = boundSize.height;
+    }
+    self.imageView.frame = CGRectMake(0, 0, showSize.width, showSize.height);
     
     // self.scrollView could be nil on the next line if outlet-setting has not happened yet
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;

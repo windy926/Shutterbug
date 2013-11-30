@@ -8,6 +8,8 @@
 
 #import "FlickrPhotosTVC.h"
 #import "FlickrFetcher.h"
+#import "PlaceFlickrPhotosTVC.h"
+#import "RecentFlickrPhotosTVC.h"
 #import "ImageViewController.h"
 
 @implementation FlickrPhotosTVC
@@ -73,15 +75,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // get the Detail view controller in our UISplitViewController (nil if not in one)
+    id master = self.splitViewController.viewControllers[0];
     id detail = self.splitViewController.viewControllers[1];
     // if Detail is a UINavigationController, look at its root view controller to find it
     if ([detail isKindOfClass:[UINavigationController class]]) {
-        detail = [((UINavigationController *)detail).viewControllers firstObject];
+        detail = [((UINavigationController *)detail) visibleViewController];
     }
     // is the Detail is an ImageViewController?
     if ([detail isKindOfClass:[ImageViewController class]]) {
         // yes ... we know how to update that!
-        [self preparePlaceImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        if ([master isKindOfClass:[UITabBarController class]]) {
+            master = [((UITabBarController *)master) selectedViewController];
+        }
+        if ([master isKindOfClass:[UINavigationController class]]) {
+            master = [((UINavigationController *)master) visibleViewController];
+        }
+        if ([master isKindOfClass:[PlaceFlickrPhotosTVC class]]) {
+            [self preparePlaceImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        } else if ([master isKindOfClass:[RecentFlickrPhotosTVC class]]) {
+            [self prepareRecentImageViewController:detail toDisplayPhoto:self.photos[indexPath.row]];
+        }
     }
 }
 
