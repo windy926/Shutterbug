@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="18h-ac-HJu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="18h-ac-HJu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -56,7 +56,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBT-Jo-ame" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="2"/>
+            <point key="canvasLocation" x="1156" y="-1010"/>
         </scene>
         <!--Navigation Controller - Top Places-->
         <scene sceneID="2aP-3X-Wry">
@@ -75,13 +75,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8z-4e-VrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829" y="2"/>
+            <point key="canvasLocation" x="630" y="-1010"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gc9-zE-4Kx">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="18h-ac-HJu" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sf0-8p-hV5">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -94,7 +94,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJY-wF-Xsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="258" y="362"/>
+            <point key="canvasLocation" x="59" y="-650"/>
         </scene>
         <!--Place Flickr PhotosTVC - Shutterbug-->
         <scene sceneID="PLV-Op-GWW">
@@ -148,7 +148,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9n-hU-oFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1837" y="2"/>
+            <point key="canvasLocation" x="1638" y="-1010"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="JqD-i0-6VS">
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAR-VI-w3k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2835" y="295"/>
+            <point key="canvasLocation" x="2292" y="-669"/>
         </scene>
         <!--Recent Flickr PhotosTVC - Recents-->
         <scene sceneID="eK6-sQ-r7g">
@@ -244,7 +244,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3G-C7-gLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1717" y="636"/>
+            <point key="canvasLocation" x="1518" y="-376"/>
         </scene>
         <!--Navigation Controller - Recents-->
         <scene sceneID="bub-L6-bkI">
@@ -263,7 +263,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hr2-2J-yDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1105" y="636"/>
+            <point key="canvasLocation" x="906" y="-376"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -272,6 +272,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="CJW-tf-Hjt"/>
+        <segue reference="kzV-JN-PxN"/>
     </inferredMetricsTieBreakers>
 </document>
